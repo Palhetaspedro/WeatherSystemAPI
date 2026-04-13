@@ -68,7 +68,7 @@ function App() {
         </section>
 
         <footer className="app__footer">
-          <span>Powered by <a href="https://openweathermap.org" target="_blank" rel="noreferrer">OpenWeatherMap</a></span>
+          <span>Powered by <a href="https://www.weatherapi.com/" target="_blank" rel="noreferrer">WeatherAPI</a></span>
           <span className="footer__watermark">@Palhetaspedro</span>
         </footer>
       </main>

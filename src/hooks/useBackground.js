@@ -57,20 +57,43 @@ const THEMES = {
   },
 };
 
+// WeatherAPI condition codes:
+// 1000 = Sunny/Clear
+// 1003 = Partly cloudy
+// 1006 = Cloudy, 1009 = Overcast
+// 1030, 1066, 1069, 1072, 1150, 1153, 1168, 1171 = Snow/Sleet variants
+// 1087 = Thundery outbreaks
+// 1135, 1147 = Mist/Fog
+// 1180-1198 = Rain variants
+// 1195-1201 = Heavy rain variants
+// 1204-1237 = Snow/Ice pellets variants
+// 1240-1252 = Light/showers rain
+// 1273-1282 = Thunder variants
+const getWeatherType = (code, isDay) => {
+  if (code === 1000) return isDay ? 'clear_day' : 'clear_night';
+  if (code === 1003) return isDay ? 'clouds_day' : 'clouds_night';
+  if (code >= 1006 && code <= 1009) return isDay ? 'clouds_day' : 'clouds_night';
+
+  // Thunder
+  if (code === 1087 || (code >= 1273 && code <= 1282)) return 'thunderstorm';
+
+  // Snow, sleet, blowing snow, blizzard, ice pellets
+  if ([1066, 1069, 1072, 1114, 1117, 1204, 1207, 1210, 1213, 1216, 1219, 1222, 1225, 1237, 1255, 1258, 1261, 1264].includes(code)) return 'snow';
+
+  // Mist, fog, freezing fog
+  if ([1030, 1135, 1147].includes(code)) return 'mist';
+
+  // Rain — everything else
+  return isDay ? 'rain_day' : 'rain_night';
+};
+
 export const useBackground = (weather) => {
   return useMemo(() => {
     if (!weather) return THEMES.clear_night;
 
-    const id = weather.weather[0].id;
-    const isNight = weather.weather[0].icon?.endsWith('n');
-
-    let type;
-    if (id >= 200 && id < 300) type = 'thunderstorm';
-    else if (id >= 300 && id < 600) type = isNight ? 'rain_night' : 'rain_day';
-    else if (id >= 600 && id < 700) type = 'snow';
-    else if (id >= 700 && id < 800) type = 'mist';
-    else if (id === 800) type = isNight ? 'clear_night' : 'clear_day';
-    else type = isNight ? 'clouds_night' : 'clouds_day';
+    const code = weather.weather[0].id;
+    const isDay = weather.is_day ?? !weather.weather[0].icon?.endsWith('n');
+    const type = getWeatherType(code, isDay);
 
     return THEMES[type] || THEMES.clear_day;
   }, [weather]);

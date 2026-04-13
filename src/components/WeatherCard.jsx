@@ -59,7 +59,7 @@ const WeatherCard = ({ weather, theme }) => {
         </div>
         <div className="icon-section">
           <img
-            src={getIconUrl(icon, '4x')}
+            src={getIconUrl(icon, 128)}
             alt={description}
             className="weather-icon-main"
           />

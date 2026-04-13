@@ -116,10 +116,10 @@ weather-dashboard/
 
 | Variável | Descrição |
 |----------|-----------|
-| `VITE_OPENWEATHER_API_KEY` | Chave da API do OpenWeatherMap |
+| `VITE_WEATHERAPI_API_KEY` | Chave da API do WEATHERAPI |
 
 ---
 
 ## 📄 Licença
 
-MIT — sinta-se livre para usar em seu portfólio!
+Direitos autorais.Exclusivamente feito e configurado por @Palhetaspedro
