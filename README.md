@@ -14,13 +14,13 @@
 **Dashboard meteorológico que consome a WeatherAPI em tempo real.**  
 Pesquise qualquer cidade do mundo e visualize temperatura, umidade, vento, pressão e previsão para os próximos 5 dias.
 
-[🚀 Ver Demo ao Vivo](https://weather-system-api.vercel.app/)
+[ Ver Demo ao Vivo](https://weather-system-api.vercel.app/)
 
 </div>
 
 ---
 
-## 📸 Capturas de Tela
+##  Capturas de Tela
 
 ### Dashboard Principal
 ![WeatherDash](assets/DashboardWeather.png)
